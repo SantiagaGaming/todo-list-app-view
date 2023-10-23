@@ -1,9 +1,10 @@
-import BaseButton from "./assets/components/UI/button/BaseButton"
+import TodoItemCreator from "./assets/components/TodoItemCreator"
+
 
 const App=()=> {
   return (
     <>
-<BaseButton>Клик</BaseButton>
+<TodoItemCreator/>
     </>
   )
 }
