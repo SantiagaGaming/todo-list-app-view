@@ -1,10 +1,10 @@
-import TodoItemCreator from "./assets/components/TodoItemCreator"
+import CreateItem from "./assets/components/pages/CreateItem"
 
 
 const App=()=> {
   return (
     <>
-<TodoItemCreator/>
+<CreateItem/>
     </>
   )
 }
