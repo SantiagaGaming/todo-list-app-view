@@ -5,6 +5,7 @@ const AllItems=()=>{
 async function getAll()
 {
     const response = await PostService.getAll();
+    console.log(response.data)
     return responce;
 }
     return<div>
