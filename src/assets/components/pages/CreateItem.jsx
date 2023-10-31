@@ -32,7 +32,7 @@ const CreateItem =()=>{
         description: text
     };
         const request = await PostService.createItem(newItem);
-        console.log(request)
+        alert("Дело создано!");
         setText('');
     }
     return(  

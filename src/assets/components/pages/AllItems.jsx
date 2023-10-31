@@ -1,7 +1,7 @@
 import PostService from "../../../API/PostService";
-import ItemCardHolder from "../ItemCardHolder";
 import BaseButton from "../UI/button/BaseButton";
 import React, { useState, useEffect } from 'react';
+import ItemsCards from "../UI/itemsCards/ItemsCards";
 
 const AllItems=()=>{
   let response;
@@ -16,17 +16,11 @@ async function getAll()
 } 
     return(
       <div>
-      <BaseButton onClick ={getAll}>Получить все дела</BaseButton>
       <BaseButton onClick ={(e) => {
             e.preventDefault();
             window.location.href="/createItem"
             }}>Создать новое дело</BaseButton>
-            {items.map((item) => (
-              <div className='card' key={item.id}>
-                <h3>{item.header}</h3>
-                <p>{item.description}</p>
-              </div>
-            ))}
+            <ItemsCards items = {items} />
         </div>
     )
 }

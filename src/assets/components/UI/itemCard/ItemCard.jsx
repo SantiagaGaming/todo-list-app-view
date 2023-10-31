@@ -1,10 +1,21 @@
-import React from 'react';
-import classes from'./ItemCard.module.css'
-const ItemCard =(item)=>{
-    console.log(item);
-    return(<card className={classes.baseCard}>
-        <h1>{item.Header}</h1><br/>
-        <p>{item.Description}</p>
-    </card>)
+import BaseButton from "../button/BaseButton"
+import PostService from "../../../../API/PostService";
+import { useState } from "react";
+const ItemCard=({item})=>{
+    async function deleteData()
+    {
+        const response = await PostService.deleteItem(item.id);
+        alert("Дело удалено!");
+    }
+
+return(
+      <li key={item.id}>
+        <h1> 
+            {item.header}
+            </h1>
+        <p>{item.description}</p>
+        <BaseButton onClick ={deleteData}>Удалить</BaseButton>
+      </li>
+)
 }
 export default ItemCard
