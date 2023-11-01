@@ -20,8 +20,12 @@ const CreateItem =()=>{
     };
         const request = await PostService.createItem(newItem);
         alert(`Дело с заголовокм ${header} и текстом ${text} создано!`);
-        setText('');
+        clearInputs();
+
+    }
+    function clearInputs(){
         setHeader('');
+        setText('');
     }
     return(  
           <div>
