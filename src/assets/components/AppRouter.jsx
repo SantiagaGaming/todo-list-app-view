@@ -6,7 +6,6 @@ import NavBar from "./pages/NavBar.jsx";
 const AppRouter = () => {
     return (
 <Routes>
-  <Route path="/" element={<NavBar />} />
   <Route path="/About"element={<About />}/>
     <Route path="/allItems" element={<AllItems />} />
     <Route path="/createItem" element={<CreateItem />} />

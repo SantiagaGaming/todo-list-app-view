@@ -9,18 +9,27 @@ const AllItems=()=>{
   useEffect(() => {
     getAll();
   }, []);
+  const handleOnDeleteData=(event,itemId)=>{
+    deleteAndRefreshData(itemId); 
+  }
 async function getAll()
 {
     response = await PostService.getAll();
     setItems(response.data)
 } 
+async function deleteAndRefreshData(id)
+{
+    const response = await PostService.deleteItem(id);
+    getAll();
+    alert("Дело удалено!");
+}
     return(
-      <div>
+      <div className="button-margin">
       <BaseButton onClick ={(e) => {
             e.preventDefault();
             window.location.href="/createItem"
             }}>Создать новое дело</BaseButton>
-            <ItemsCards items = {items} />
+            <ItemsCards items = {items} onDeleteItem={handleOnDeleteData}/>
         </div>
     )
 }

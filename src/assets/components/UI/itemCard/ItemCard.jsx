@@ -1,12 +1,6 @@
 import BaseButton from "../button/BaseButton"
 import PostService from "../../../../API/PostService";
-import { useState } from "react";
-const ItemCard=({item})=>{
-    async function deleteData()
-    {
-        const response = await PostService.deleteItem(item.id);
-        alert("Дело удалено!");
-    }
+const ItemCard=({item, onDelete})=>{
 
 return(
       <li key={item.id}>
@@ -14,7 +8,7 @@ return(
             {item.header}
             </h1>
         <p>{item.description}</p>
-        <BaseButton onClick ={deleteData}>Удалить</BaseButton>
+        <BaseButton onClick ={event => onDelete(event, item.id)}>Удалить</BaseButton>
       </li>
 )
 }

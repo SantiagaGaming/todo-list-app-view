@@ -6,25 +6,12 @@ import { useState } from "react";
 const CreateItem =()=>{
     const [header,setHeader] = useState('');
     const [text,setText] = useState('');
-    const [deleteText,setDeleteText] = useState('');
 
     const handleHeaderChange=(header) =>{
         setHeader(header);
     }
-    const handleDeleteChange=(deleteText) =>{
-        setDeleteText(deleteText);
-    }
     const handleTextChange=(text) =>{
         setText(text);
-    }
-   async function fetchData()
-    {
-        const response = await PostService.getAll();
-        console.log(response.data);
-    }
-    async function deleteData()
-    {
-        const response = await PostService.deleteItem(deleteText);
     }
     async function addItem()
     {   const newItem = {
@@ -32,8 +19,9 @@ const CreateItem =()=>{
         description: text
     };
         const request = await PostService.createItem(newItem);
-        alert("Дело создано!");
+        alert(`Дело с заголовокм ${header} и текстом ${text} создано!`);
         setText('');
+        setHeader('');
     }
     return(  
           <div>
@@ -44,11 +32,6 @@ const CreateItem =()=>{
     <BaseInput onChange={handleTextChange}/>
     <br/>
     <BaseButton onClick ={addItem}>Создать</BaseButton>
-    <BaseButton onClick ={fetchData}>Получить</BaseButton>
-    <p>Удаление поста по номеру</p>
-    <BaseInput onChange={handleDeleteChange}/>
-    <br/>
-    <BaseButton onClick ={deleteData}>Удалить</BaseButton>
     </div>
     );
 
