@@ -2,6 +2,7 @@ import BaseButton from "../UI/button/BaseButton"
 import BaseInput from "../UI/input/BaseInput"
 import PostService from "../../../API/PostService.js";
 import { useState } from "react";
+import {isNotEmptySpace} from "../InputNullCheck.js";
 
 const CreateItem =()=>{
     const [header,setHeader] = useState('');
@@ -14,13 +15,19 @@ const CreateItem =()=>{
         setText(text);
     }
     async function addItem()
-    {   const newItem = {
-        header: header,
-        description: text
-    };
+    {
+         if(!isNotEmptySpace(header)||!isNotEmptySpace(text) )
+        alert("Поля не могут быть пустыми!");
+        else{
+            const newItem = {
+                header: header,
+                description: text
+        }
         const request = await PostService.createItem(newItem);
-        alert(`Дело с заголовокм ${header} и текстом ${text} создано!`);
+        alert(`Дело с заголовком ${header} и текстом ${text} создано!`);
         clearInputs();
+    }
+   
     }
     function clearInputs(){
         setHeader('');
@@ -37,6 +44,5 @@ const CreateItem =()=>{
     <BaseButton onClick ={addItem}>Создать</BaseButton>
     </div>
     );
-
 };
 export default CreateItem

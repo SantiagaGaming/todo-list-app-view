@@ -3,6 +3,7 @@ import BaseInput from "../UI/input/BaseInput"
 import PostService from "../../../API/PostService.js";
 import { useState,useEffect} from "react";
 import {useParams} from 'react-router-dom';
+import {isNotEmptySpace} from "../InputNullCheck";
 
 const EditItem =()=>{
     const {id} = useParams();
@@ -19,8 +20,6 @@ const EditItem =()=>{
    const item = response.data;
    setHeader(item.header);
    setText(item.description);
-   console.log(item.header);
-   console.log(item.description);
 } 
     const handleHeaderChange=(header) =>{
         setHeader(header);
@@ -29,13 +28,17 @@ const EditItem =()=>{
         setText(text);
     }
     async function editItem()
-    {   const editedItem = {
+    {
+        if(!isNotEmptySpace(header)||!isNotEmptySpace(text) )
+        alert("Поля не могут быть пустыми!");
+        else{   
+        const editedItem = {
         id,
         header: header,
-        description: text
-    };
+        description: text}
         const request = await PostService.editItem(editedItem);
         alert(`Дело с заголовом ${header} и текстом ${text} отредактирвано!`);
+    }
     }
 
     return(  
