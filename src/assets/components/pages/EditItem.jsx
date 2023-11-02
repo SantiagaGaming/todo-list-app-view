@@ -36,19 +36,15 @@ const EditItem =()=>{
     };
         const request = await PostService.editItem(editedItem);
         alert(`Дело с заголовом ${header} и текстом ${text} отредактирвано!`);
-        clearInputs();
     }
-    function clearInputs(){
-        setHeader('');
-        setText('');
-    }
+
     return(  
           <div>
         <h1>Редактировать дело</h1>
         <p>Заголвок</p>
-    <BaseInput onChange={handleHeaderChange}/>
+    <BaseInput onChange={handleHeaderChange} inputValue={header}/>
     <p>Описание</p>
-    <BaseInput onChange={handleTextChange}/>
+    <BaseInput onChange={handleTextChange}inputValue={text}/>
     <br/>
     <BaseButton onClick ={editItem}>Редактировать</BaseButton>
     </div>

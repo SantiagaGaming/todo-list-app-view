@@ -21,7 +21,6 @@ const CreateItem =()=>{
         const request = await PostService.createItem(newItem);
         alert(`Дело с заголовокм ${header} и текстом ${text} создано!`);
         clearInputs();
-
     }
     function clearInputs(){
         setHeader('');
@@ -31,9 +30,9 @@ const CreateItem =()=>{
           <div>
         <h1>Создать новое дело</h1>
         <p>Заголвок</p>
-    <BaseInput onChange={handleHeaderChange}/>
+    <BaseInput onChange={handleHeaderChange}  inputValue={header}/>
     <p>Описание</p>
-    <BaseInput onChange={handleTextChange}/>
+    <BaseInput onChange={handleTextChange} inputValue={text}/>
     <br/>
     <BaseButton onClick ={addItem}>Создать</BaseButton>
     </div>
