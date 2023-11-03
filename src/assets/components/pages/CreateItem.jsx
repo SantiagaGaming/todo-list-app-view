@@ -27,7 +27,6 @@ const CreateItem =()=>{
         alert(`Дело с заголовком ${header} и текстом ${text} создано!`);
         clearInputs();
     }
-   
     }
     function clearInputs(){
         setHeader('');
